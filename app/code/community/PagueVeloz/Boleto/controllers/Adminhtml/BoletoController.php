@@ -30,7 +30,15 @@ class PagueVeloz_Boleto_Adminhtml_BoletoController extends Mage_Adminhtml_Contro
                     $response['msg'] = $e->getMessage();
                 }
             } else {
-                $response['msg'] = 'Boleto não informado.';
+                $order_id = $boleto_id = $this->getRequest()->getParam('order_id');
+                $boleto = Mage::getModel('pagueveloz_boleto/boleto')->generate(Mage::getModel('sales/order')->load($order_id));
+                if ($boleto->getUrl()) {
+                    $response['url'] = $boleto->getUrl();
+                    $response['boleto_id'] = $boleto->getId();
+                    $response['success'] = true;
+                } else {
+                    $response['msg'] = 'Boleto não informado.';
+                }
             }
 
             $this->getResponse()->setHeader('Content-type', 'application/json');

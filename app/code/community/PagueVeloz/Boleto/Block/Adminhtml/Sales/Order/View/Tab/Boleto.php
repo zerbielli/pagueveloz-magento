@@ -49,12 +49,12 @@ class PagueVeloz_Boleto_Block_Adminhtml_Sales_Order_View_Tab_Boleto extends Mage
 
     public function canShowTab()
     {
-        return ($this->getBoleto()) ? true : false;
+        return ($this->getOrder()->getPayment()->getMethodInstance()->getCode() == 'pagueveloz_boleto') ? true : false;
     }
 
     public function isHidden()
     {
-        return ($this->getBoleto()->getId()) ? false : true;
+        return ($this->getOrder()->getPayment()->getMethodInstance()->getCode() == 'pagueveloz_boleto') ? false : true;
     }
 
 }

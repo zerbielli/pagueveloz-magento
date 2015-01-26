@@ -25,6 +25,7 @@
                 method: 'post',
                 parameters: {
                     boleto_id: boleto_id,
+                    order_id: <?php echo $this->getRequest()->getParam('order_id') ?>
                 },
                 onSuccess: function(response) {
                     var dados = response.responseText.evalJSON();
@@ -51,7 +52,7 @@
             </li>
             <li>
             	<strong>Url: </strong><span id="url-boleto"><?php echo $boleto->getUrl() ?></span>
-                <button id="bt-verificar" title="Verificar" type="button" class="scalable add" onclick="boleto.regerar(<?php echo $boleto->getId() ?>)" style="">
+                <button id="bt-regerar" title="Verificar" type="button" class="scalable add" onclick="boleto.regerar(<?php echo $boleto->getId() ?>)" style="">
                     <span><span><span>Regerar Boleto</span></span></span>
                 </button>
             </li>
@@ -66,7 +67,7 @@
                 <strong>Valor Pago: </strong><span id="valor-pago"><?php echo Mage::helper('core')->currency($valorPago, true, false)  ?></span>
             </li>
             <li>
-            	<strong>Verificado automaticamente em: </strong><?php 
+            	<strong>Verificado automaticamente em: </strong><?php
 				$date = new DateTime($boleto->getUpdatedTime());
             	echo ($boleto->getUpdatedTime()) ? $date->format('d/m/Y') : "Não Verificado" ?>
             </li>

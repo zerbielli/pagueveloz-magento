@@ -76,9 +76,8 @@ class PagueVeloz_Boleto_Model_Boleto extends Mage_Core_Model_Abstract
         $valor = $order->getGrandTotal();
         $seuNumero = $order->getIncrementId();
         $nome = $order->getCustomerName();
-        $customer = Mage::getModel('customer/customer')->load($order->getCustomerId());
-        $cpf = $customer->getTaxvat();
-        $email = $customer->getEmail();
+        $cpf = $order->getCustomerTaxvat();
+        $email = $order->getCustomerEmail();
         $boleto = $this->loadByOrderId($order->getId());
         if (!$boleto->getId()) {
             $webservice = Mage::getModel('pagueveloz_api/webservice');
@@ -102,9 +101,8 @@ class PagueVeloz_Boleto_Model_Boleto extends Mage_Core_Model_Abstract
         $order = $this->getOrder();
         $seuNumero = $order->getIncrementId();
         $nome = $order->getCustomerName();
-        $customer = Mage::getModel('customer/customer')->load($order->getCustomerId());
-        $cpf = $customer->getTaxvat();
-        $email = $customer->getEmail();
+        $cpf = $order->getCustomerTaxvat();
+        $email = $order->getCustomerEmail();
 
         $url = $webservice->generateBoletoUrl($this->getValor(), $seuNumero, $nome, $cpf, $email);
         if ($url) {
