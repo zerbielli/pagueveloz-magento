@@ -67,19 +67,11 @@ class PagueVeloz_Api_Model_Dto_BoletoDTO
 
     public function setLinha1($linha1)
     {
-        if (empty($linha1)) {
-            throw new PagueVeloz_Api_Model_Exceptions_ArgumentNullException("Argumento informado não deve ser NULL. \"$linha1\" é null.");
-        }
-
         $this->_linha1 = $linha1;
     }
 
     public function setLinha2($linha2)
     {
-        if (empty($linha2)) {
-            throw new PagueVeloz_Api_Model_Exceptions_ArgumentNullException("Argumento informado não deve ser NULL. \"$linha2\" é null.");
-        }
-
         $this->_linha2 = $linha2;
     }
 

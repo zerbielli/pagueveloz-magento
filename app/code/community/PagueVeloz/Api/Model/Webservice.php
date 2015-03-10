@@ -55,7 +55,7 @@ class PagueVeloz_Api_Model_Webservice extends Mage_Core_Model_Abstract
         $dto = Mage::getModel('pagueveloz_api/dto_ComprarCreditosSMSDTO');
         $dto->setFormaPgto($tipo_pagamento);
 
-        if ($tipo_credito == $comprarCreditosSMS::COMPRA_POR_VALOR) {
+        if ($tipo_credito == PagueVeloz_Api_Model_Webservice_ComprarCreditosSMS::COMPRA_POR_VALOR) {
             $dto->setValor($valor);
         } else {
             $dto->setCreditos($valor);
@@ -162,6 +162,7 @@ class PagueVeloz_Api_Model_Webservice extends Mage_Core_Model_Abstract
         $dto->setCedente($boletoMethod->getConfig('cedente_name'));
         $resposta_final = $boleto->Post($dto);
         $url = $resposta_final->getBody();
+
         if (stripos($url, 'Erro') !== false) {
             $url = "";
         }
