@@ -17,7 +17,7 @@
             </pagueveloz_api>
         </models>
         <events>
-            <admin_system_config_changed_section_pagueveloz_pagueveloz_configuration>
+            <admin_system_config_changed_section_pagueveloz>
                 <observers>
                     <pagueveloz_api>
                         <type>singleton</type>
@@ -25,7 +25,7 @@
                         <method>savePaguevelozConfig</method>
                     </pagueveloz_api>
                 </observers>
-            </admin_system_config_changed_section_pagueveloz_pagueveloz_configuration>
+            </admin_system_config_changed_section_pagueveloz>
         </events>
     </global>
     <admin>
